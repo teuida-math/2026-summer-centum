@@ -30,25 +30,81 @@
   a{color:inherit;}
   .wrap{max-width:680px;margin:0 auto;padding:0 16px;}
 
-  #intro{position:fixed;inset:0;z-index:9999;background:var(--navy);overflow:hidden;}
-  .intro-page{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem;text-align:center;opacity:0;transform:translateY(10px);}
-  .intro-page.page-1{animation:introPage1 2.8s ease forwards;}
-  #intro-wordmark{position:absolute;top:50%;left:50%;transform:translate(-50%,-120px);font-size:13px;letter-spacing:.45em;color:rgba(255,255,255,.34);z-index:2;}
-  #intro-opening{font-size:clamp(26px,6vw,38px);font-weight:800;letter-spacing:.14em;line-height:1.42;color:rgba(255,255,255,.82);text-align:center;margin-bottom:14px;}
-  #intro-copy{font-family:'Noto Serif KR',serif;font-size:clamp(26px,6vw,38px);font-weight:300;line-height:1.72;color:#f3efe8;}
-  #intro-skip{position:absolute;top:18px;right:18px;border:0;background:transparent;color:rgba(255,255,255,.32);font-size:11px;letter-spacing:.12em;padding:8px 10px;cursor:pointer;z-index:2;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes introPage1{
-    0%{opacity:0;transform:translateY(10px)}
-    18%,100%{opacity:1;transform:translateY(0)}
+  #intro{
+    position:fixed;
+    inset:0;
+    background:var(--navy);
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
   }
-  #intro.leaving{animation:introOut .7s ease forwards;}
-  @keyframes introPage2{
-    0%{opacity:0;transform:translateY(14px)}
-    18%,82%{opacity:1;transform:translateY(0)}
-    100%{opacity:0;transform:translateY(-12px)}
+  #intro-wordmark{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(13px,3vw,16px);
+    font-weight:400;
+    letter-spacing:.45em;
+    color:rgba(255,255,255,.35);
+    text-transform:uppercase;
+    margin-bottom:3.5rem;
+    opacity:0;
   }
-  @keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+  #intro-text{
+    position:relative;
+    width:100%;
+    max-width:400px;
+    height:5em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .phrase{
+    position:absolute;
+    font-family:'Noto Serif KR',serif;
+    font-size:clamp(20px,5vw,28px);
+    font-weight:300;
+    color:#f0ede8;
+    text-align:center;
+    line-height:1.9;
+    letter-spacing:.02em;
+    opacity:0;
+    width:100%;
+    transition:opacity .5s ease;
+  }
+  #intro-skip{
+    position:absolute;
+    top:1.5rem;
+    right:1.5rem;
+    font-size:11px;
+    color:rgba(255,255,255,.25);
+    letter-spacing:.12em;
+    cursor:pointer;
+    border:none;
+    background:none;
+    font-family:'Noto Sans KR',sans-serif;
+    padding:8px 12px;
+    transition:color .2s;
+    opacity:0;
+    animation:fadeIn .6s ease forwards .8s;
+  }
+  #intro-skip:hover{color:rgba(255,255,255,.6);}
+  #intro-progress{
+    position:absolute;
+    bottom:2.8rem;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:7px;
+    opacity:0;
+    animation:fadeIn .6s ease forwards .8s;
+  }
+  .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .4s;}
+  .dot.active{background:rgba(255,255,255,.5);}
+  @keyframes fadeIn{to{opacity:1;}}
+  #intro.leaving{animation:overlayOut .7s ease forwards;}
+  @keyframes overlayOut{to{opacity:0;pointer-events:none;}}
 
   .hero{background:linear-gradient(180deg,#fff 0%,#f8f8f6 78%,#f5f5f3 100%);padding:34px 0 24px;border-bottom:1px solid rgba(232,232,228,.85);}
   .eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--blue);background:var(--soft-blue);border:1px solid #d6e8f8;border-radius:999px;padding:5px 12px;margin-bottom:15px;}
@@ -214,8 +270,14 @@
 
   <div id="intro-wordmark">TEUIDA MATH</div>
 
-  <div class="intro-page page-1">
-    <div id="intro-copy">이해의 출발점,<br />트이다.</div>
+  <div id="intro-text">
+    <span class="phrase" id="p0">이해의 출발점</span>
+    <span class="phrase" id="p1">다시, 트이다.</span>
+  </div>
+
+  <div id="intro-progress">
+    <div class="dot" id="d0"></div>
+    <div class="dot" id="d1"></div>
   </div>
 </div>
 
@@ -358,17 +420,65 @@
 <div class="floating-cta"><div class="floating-inner"><a class="btn btn-ghost" href="https://pf.kakao.com/_xnxiBGn" target="_blank">카톡 문의</a><button class="btn btn-primary" onclick="scrollToForm()">상담 예약</button></div></div>
 
 <script>
-  var popupShown=false;
-function skipIntro(){
-  var intro=document.getElementById('intro');
-  if(intro) intro.style.display='none';
-  showPopup();
+  /* ── 인트로 ── */
+var timers=[];
+var skipped=false;
+
+function runIntro(){
+  skipped=false;
+  var wordmark=document.getElementById('intro-wordmark');
+  var p0=document.getElementById('p0');
+  var p1=document.getElementById('p1');
+  var d0=document.getElementById('d0');
+  var d1=document.getElementById('d1');
+
+  if(wordmark){
+    wordmark.style.opacity=0;
+    wordmark.style.transition='opacity .7s ease';
+  }
+  if(p0)p0.style.opacity=0;
+  if(p1)p1.style.opacity=0;
+  if(d0)d0.classList.remove('active');
+  if(d1)d1.classList.remove('active');
+
+  timers.push(setTimeout(function(){
+    if(skipped)return;
+    if(wordmark)wordmark.style.opacity=1;
+    if(p0)p0.style.opacity=1;
+    if(d0)d0.classList.add('active');
+  },300));
+
+  timers.push(setTimeout(function(){
+    if(skipped)return;
+    if(p0)p0.style.opacity=0;
+    if(d0)d0.classList.remove('active');
+  },1600));
+
+  timers.push(setTimeout(function(){
+    if(skipped)return;
+    if(p1)p1.style.opacity=1;
+    if(d1)d1.classList.add('active');
+  },1900));
+
+  timers.push(setTimeout(function(){
+    if(skipped)return;
+    finishIntro();
+  },3200));
 }
 
-function showPopup(){
+function finishIntro(){
+  var intro=document.getElementById('intro');
+  if(!intro){openPopup();return;}
+  intro.classList.add('leaving');
+  setTimeout(function(){
+    intro.style.display='none';
+    setTimeout(openPopup,400);
+  },700);
+}
+
+function openPopup(){
   var overlay=document.getElementById('featured-popup-overlay');
-  if(!overlay || popupShown) return;
-  popupShown=true;
+  if(!overlay)return;
   overlay.style.display='flex';
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden','false');
@@ -376,34 +486,33 @@ function showPopup(){
 
 function closePopup(){
   var overlay=document.getElementById('featured-popup-overlay');
-  if(!overlay) return;
-  overlay.style.display='none';
+  if(!overlay)return;
   overlay.classList.remove('open');
+  overlay.style.display='none';
   overlay.setAttribute('aria-hidden','true');
 }
 
 function popupFocus(course){
   closePopup();
-  setTimeout(function(){focusCourse(course);},120);
+  setTimeout(function(){focusCourse(course);},300);
 }
 
-window.addEventListener('DOMContentLoaded',function(){
-  setTimeout(function(){
-    var intro=document.getElementById('intro');
-    if(intro){
-      intro.classList.add('leaving');
-      setTimeout(function(){
-        intro.style.display='none';
-        showPopup();
-      },700);
-    } else {
-      showPopup();
-    }
-  },2800);
-});
+function skipIntro(){
+  skipped=true;
+  timers.forEach(clearTimeout);
+  finishIntro();
+}
+
+var featuredOverlay=document.getElementById('featured-popup-overlay');
+if(featuredOverlay){
+  featuredOverlay.addEventListener('click',function(e){
+    if(e.target===this)closePopup();
+  });
+}
 
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup();});
-document.addEventListener('click',function(e){var overlay=document.getElementById('featured-popup-overlay');if(overlay&&e.target===overlay)closePopup();});
+
+runIntro();
   function focusCourse(course){var card=document.querySelector('[data-course="'+course+'"]');if(!card)return;card.scrollIntoView({behavior:'smooth',block:'center'});card.animate([{boxShadow:'0 0 0 0 rgba(24,95,165,0)'},{boxShadow:'0 0 0 4px rgba(24,95,165,.18)'},{boxShadow:'0 0 0 0 rgba(24,95,165,0)'}],{duration:1100,easing:'ease-out'});}
   document.querySelectorAll('.tab-btn').forEach(function(btn){btn.addEventListener('click',function(){var tab=btn.dataset.tab;document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.course-section,.route-section').forEach(function(section){if(tab==='all'||section.dataset.section===tab)section.classList.remove('hidden-by-tab');else section.classList.add('hidden-by-tab');});window.scrollTo({top:0,behavior:'smooth'});});});
   var phoneInput=document.getElementById('f-phone');if(phoneInput){phoneInput.addEventListener('input',function(e){e.target.value=e.target.value.replace(/[^0-9]/g,'').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/,'$1-$2-$3');});}
