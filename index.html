@@ -133,8 +133,9 @@
   .message-card p{font-size:13px;line-height:1.8;color:#5f6673;}
 
   .type-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:24px;}
-  .type-card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:18px 14px 17px;text-align:center;cursor:pointer;min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease;}
-  .type-card:hover{transform:translateY(-2px);border-color:#d9e2ec;box-shadow:0 10px 24px rgba(13,17,48,.05);background:#fbfcfd;}
+  .type-card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:18px 14px 17px;text-align:center;cursor:pointer;min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .42s cubic-bezier(.34,1.56,.64,1),border-color .2s ease,box-shadow .25s ease,background .2s ease;}
+  .type-card:hover{transform:translateY(-4px) scale(1.035);border-color:#c9d8ea;box-shadow:0 14px 30px rgba(13,17,48,.1);background:#fbfcfd;}
+  .type-card:active{transform:translateY(-1px) scale(.98);transition:transform .12s ease;}
   .type-card .tag{display:inline-flex;align-items:center;justify-content:center;font-size:9.5px;color:var(--blue);font-weight:900;letter-spacing:.1em;margin-bottom:9px;background:#f3f7fc;border:1px solid #e0ebf6;border-radius:999px;padding:4px 8px;}
   .type-card strong{display:block;font-size:15px;line-height:1.42;margin-bottom:8px;color:var(--navy);}
   .type-card span{display:block;font-size:12px;color:#777;line-height:1.62;word-break:keep-all;}
@@ -271,6 +272,29 @@
   .popup-all-btn{width:100%;margin-top:14px;border:none;background:#0d1130;color:#fff;border-radius:10px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
 
   @media(max-width:520px){.hero-actions,.type-grid,.form-row{grid-template-columns:1fr}.course-body{grid-template-columns:1fr}.info.full{grid-column:1}.hero{padding-top:28px}.floating-inner{grid-template-columns:.9fr 1.1fr}}
+  .only-section{background:linear-gradient(160deg,#141a3d 0%,#0d1130 58%,#0b0e28 100%);padding:26px 0 28px;}
+  .only-section .section-kicker{color:#7fb2e6;}
+  .only-section .section-title{color:#fff;}
+  .only-section .section-desc{color:rgba(255,255,255,.66);}
+  .only-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+  .only-card{border:0;border-radius:16px;padding:16px 14px 15px;background:#fff;box-shadow:0 8px 22px rgba(0,0,0,.20);}
+  .only-head{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+  .only-num{width:32px;height:32px;border-radius:9px;background:var(--blue);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;letter-spacing:.02em;flex:0 0 auto;box-shadow:0 4px 12px rgba(24,95,165,.35);}
+  .only-card h3{font-size:14px;font-weight:900;color:var(--ink);letter-spacing:-.02em;line-height:1.35;margin:0;word-break:keep-all;}
+  .only-card p{font-size:12.5px;color:#666;line-height:1.66;word-break:keep-all;}
+  @media(max-width:560px){.only-grid{grid-template-columns:1fr;}}
+  .summer-banner{padding:14px 0 2px;}
+  .sb-card{background:linear-gradient(135deg,#f1f8fd 0%,#e7f1fb 100%);border:1.5px solid var(--blue);border-radius:18px;padding:17px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 10px 26px rgba(24,95,165,.14);animation:sbPulse 2.6s ease-in-out infinite;will-change:transform;}
+  @keyframes sbPulse{0%,100%{transform:scale(1);box-shadow:0 10px 26px rgba(24,95,165,.14);}50%{transform:scale(1.018);box-shadow:0 16px 34px rgba(24,95,165,.24);}}
+  .sb-card:hover{animation-play-state:paused;}
+  @media(prefers-reduced-motion:reduce){.sb-card{animation:none;}}
+  .sb-kicker{display:inline-block;font-size:10.5px;font-weight:900;letter-spacing:.08em;color:#fff;background:var(--blue);border-radius:999px;padding:4px 10px;margin-bottom:9px;}
+  .sb-title{font-size:16px;font-weight:900;color:var(--navy);letter-spacing:-.02em;line-height:1.35;margin-bottom:5px;word-break:keep-all;}
+  .sb-desc{font-size:12.5px;color:#4a5568;line-height:1.6;word-break:keep-all;}
+  .sb-actions{flex:0 0 auto;}
+  .sb-btn{border:0;background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px;font-size:13px;font-weight:900;cursor:pointer;white-space:nowrap;box-shadow:0 6px 16px rgba(13,17,48,.2);}
+  .sb-btn:hover{background:#1b2150;}
+  @media(max-width:520px){.sb-card{flex-direction:column;align-items:stretch;}.sb-btn{width:100%;}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
@@ -303,6 +327,34 @@
   </div>
 </header>
 
+<section class="only-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-kicker">TEUIDA ONLY</div>
+      <h2 class="section-title">트이다만의 학습 시스템</h2>
+      <p class="section-desc">센텀점 첫 오픈 — 트이다가 다르게 하는 것들.</p>
+    </div>
+    <div class="only-grid">
+      <div class="only-card"><div class="only-head"><div class="only-num">01</div><h3>앱으로 실시간 확인하는 출결·피드백</h3></div><p>자체 개발한 트이다 앱으로 매 수업의 출결과 학습 피드백, 진도를 학부모가 바로 확인합니다.</p></div>
+      <div class="only-card"><div class="only-head"><div class="only-num">02</div><h3>데일리테스트로 잡는 그날의 복습</h3></div><p>매일 배운 내용을 테스트로 점검하고, 점수와 사진을 앱에 기록해 복습까지 이어갑니다.</p></div>
+      <div class="only-card"><div class="only-head"><div class="only-num">03</div><h3>현우진T 공식 기관 커리큘럼</h3></div><p>시발점·노베 등 현우진T 공식 교재로 개념부터 심화까지 검증된 커리큘럼을 따릅니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="summer-banner">
+  <div class="wrap">
+    <div class="sb-card">
+      <div class="sb-main">
+        <span class="sb-kicker">SUMMER ONLY · 여름방학 한정</span>
+        <div class="sb-title">썸머 인텐시브 — 여름방학 오전 집중</div>
+        <div class="sb-desc">주중 오전을 고정 시간에 개별 맞춤으로 집중합니다. 09–11 · 11–13 중 선택.</div>
+      </div>
+      <div class="sb-actions"><button class="sb-btn" onclick="scrollToForm('썸머 인텐시브')">상담 예약</button></div>
+    </div>
+  </div>
+</section>
+
 <nav class="tabs-wrap">
   <div class="tabs" role="tablist" aria-label="수업 카테고리">
     <button class="tab-btn active" data-tab="all" type="button">전체</button>
@@ -312,7 +364,7 @@
     <button class="tab-btn" data-tab="middle" type="button">중등</button>
     <button class="tab-btn" data-tab="common" type="button">공통수학</button>
     <button class="tab-btn" data-tab="bridge" type="button">브릿지</button>
-    <button class="tab-btn" data-tab="elective" type="button">대수·미적분</button>
+    <button class="tab-btn" data-tab="elective" type="button">고등선택</button>
   </div>
 </nav>
 
@@ -327,6 +379,10 @@
       <button class="popup-close" onclick="closePopup()" type="button" aria-label="팝업 닫기">×</button>
     </div>
     <div class="popup-course-list">
+      <button class="popup-course-btn" onclick="popupFocus('썸머 인텐시브')" type="button">
+        <span class="popup-course-main"><span class="popup-course-name">썸머 인텐시브</span><span class="popup-course-desc">여름방학 오전 집중 · 주중 09–13 중 선택</span></span>
+        <span class="popup-course-badge pb-blue">여름 한정</span>
+      </button>
       <button class="popup-course-btn" onclick="popupFocus('초등 심화')" type="button">
         <span class="popup-course-main"><span class="popup-course-name">초등 심화</span><span class="popup-course-desc">개별·상시 · 디딤돌 최상위 / 수학의 신</span></span>
         <span class="popup-course-badge pb-purple">개별·상시</span>
@@ -358,14 +414,18 @@
     <div class="type-grid">
       <button class="type-card" onclick="focusCourse('개별진도')"><div class="tag">PERSONAL</div><strong>맞춤 설계형</strong><span>정해진 반보다<br />학생 상황에 맞는 진도 설계가 필요한 경우</span></button>
       <button class="type-card" onclick="focusCourse('초등 심화')"><div class="tag">TOP ELEMENTARY</div><strong>초등 심화형</strong><span>단순 선행보다<br />최상위 사고 경험이 필요한 학생</span></button>
+      <button class="type-card" onclick="focusCourse('중2-2 심화')"><div class="tag">MIDDLE</div><strong>중등 상위권형</strong><span>중2 2학기 심화 등<br />상위권 문제 적용력이 필요한 중등</span></button>
+      <button class="type-card" onclick="focusCourse('완성 — 공통수학 1,2')"><div class="tag">COMMON</div><strong>고등 진입형</strong><span>공통수학 개념을<br />방학 중 완성해야 하는 학생</span></button>
       <button class="type-card" onclick="focusCourse('심화 — 공통수학 1')"><div class="tag">ADVANCED</div><strong>상위권 심화형</strong><span>유형서 이후<br />상위권 문제 적용력이 필요한 학생</span></button>
       <button class="type-card" onclick="focusCourse('도형가이드')"><div class="tag">BRIDGE</div><strong>도형 보완형</strong><span>수능·고등 수학에서<br />도형 감각이 계속 발목 잡는 학생</span></button>
+      <button class="type-card" onclick="focusCourse('고등 대수 개념 완성')"><div class="tag">ELECTIVE</div><strong>고2 선택형</strong><span>대수·미적분1을<br />내신과 수능 입문으로 함께 잡을 학생</span></button>
+      <button class="type-card" onclick="focusCourse('썸머 인텐시브')"><div class="tag">SUMMER</div><strong>여름 오전 집중형</strong><span>여름방학 오전을<br />밀도 있게 개별로 집중하고 싶은 학생</span></button>
     </div>
   </section>
 
   <section class="section course-section" data-section="personal">
     <div class="section-head"><div class="section-kicker">PERSONAL TRACK</div><h2 class="section-title">개별진도</h2><p class="section-desc">나만의 속도로, 목표에 맞게 진도를 설계합니다.</p></div>
-    <article class="course-card" data-course="개별진도">
+    <article class="course-card" data-course="썸머 인텐시브"><div class="course-top"><div class="course-meta"><span class="badge b-personal">개별수업</span><span class="badge b-vacation">여름 특강</span><span class="badge b-open">오전 집중</span></div><h3 class="course-title">썸머 인텐시브</h3><p class="course-one">여름방학 오전을 고정 시간에 개별 맞춤으로 집중하는 특강입니다.</p></div><div class="course-body"><div class="info"><span class="info-label">대상</span><span class="info-value">초·중·고 개별 맞춤</span></div><div class="info"><span class="info-label">방식</span><span class="info-value">개별진도</span></div><div class="info full"><span class="info-label">일정</span><span class="info-value time">월–금 오전<br />09:00–11:00 · 11:00–13:00 중 선택</span></div></div><div class="recommend"><div class="recommend-title">추천 대상</div><ul><li>여름방학 오전 시간을 밀도 있게 쓰고 싶은 학생</li><li>내 교재·내 진도로 오전에 집중하고 싶은 학생</li></ul></div><div class="chips"><span class="chip point">#여름방학 한정</span><span class="chip point">#오전 집중</span><span class="chip">#개별 맞춤</span></div><div class="card-cta"><button class="card-btn" onclick="scrollToForm('썸머 인텐시브')">상담 예약</button></div></article><article class="course-card" data-course="개별진도">
       <div class="course-top"><div class="course-meta"><span class="badge b-personal">개별수업</span><span class="badge b-season">상시 모집</span><span class="badge b-open">센텀점</span></div><h3 class="course-title">개별진도</h3><p class="course-one">초등·중등·고등 전 과정을 학생별 현재 수준과 목표에 맞춰 진행합니다.</p></div>
       <div class="course-body"><div class="info"><span class="info-label">대상</span><span class="info-value">초등 · 중등 · 고등</span></div><div class="info"><span class="info-label">교재</span><span class="info-value">원하는 교재로 진행</span></div><div class="info full"><span class="info-label">일정</span><span class="info-value">개인별 맞춤</span></div></div>
       <div class="recommend"><div class="recommend-title">추천 대상</div><ul><li>학생의 현재 교재와 진도를 그대로 이어가고 싶은 경우</li><li>단체반보다 맞춤형 보완이 필요한 경우</li><li>선행, 복습, 심화를 학생 상황에 맞춰 조합해야 하는 경우</li></ul></div>
@@ -408,7 +468,7 @@
 
   <section class="section course-section" data-section="bridge"><div class="section-head"><div class="section-kicker">BRIDGE CLASS</div><h2 class="section-title">고등 브릿지</h2><p class="section-desc">고등 수학에서 계속 발목을 잡는 도형 감각을 한 번 정리합니다.</p></div><article class="course-card" data-course="도형가이드"><div class="course-top"><div class="course-meta"><span class="badge b-group">단체수업</span><span class="badge b-season">상시 모집</span><span class="badge b-official">현우진T 교재</span></div><h3 class="course-title">도형가이드</h3><p class="course-one">중등 도형을 수능 대비 관점에서 다시 정리하는 브릿지 과정입니다.</p></div><div class="course-body"><div class="info"><span class="info-label">목적</span><span class="info-value">수능 입문</span></div><div class="info"><span class="info-label">교재</span><span class="info-value">노베 도형가이드<br />+ 고1 3월 모의고사 5개년</span></div><div class="info"><span class="info-label">운영</span><span class="info-value">상시 · 반복 개강</span></div><div class="info"><span class="info-label">일정</span><span class="info-value time">토 16:00 — 19:00</span></div></div><div class="recommend"><div class="recommend-title">추천 대상</div><ul><li>도형 문제에서 접근이 막히는 학생</li><li>미적분·수능 문제에서 필요한 기하 감각이 약한 학생</li><li>고등 진입 전 도형을 한 번 정리하고 싶은 학생</li></ul></div><div class="chips"><span class="chip point">#수능 도형 총정리</span><span class="chip point">#현우진T 공식 기관</span></div><div class="card-cta"><button class="card-btn" onclick="scrollToForm('도형가이드')">상담 예약</button></div></article></section>
 
-  <section class="section course-section" data-section="elective"><div class="section-head"><div class="section-kicker">ELECTIVE MATH</div><h2 class="section-title">대수 · 미적분1</h2><p class="section-desc">고2 내신 심화 개념과 수능 입문 개념을 동시에 잡습니다.</p></div><article class="course-card" data-course="고등 대수 개념 완성"><div class="course-top"><div class="course-meta"><span class="badge b-personal">개별수업</span><span class="badge b-season">상시 모집</span><span class="badge b-official">현우진T 교재</span></div><h3 class="course-title">고등 대수 개념 완성</h3><p class="course-one">고2 대수의 내신 심화 개념과 수능 입문 개념을 함께 정리합니다.</p></div><div class="course-body"><div class="info"><span class="info-label">대상</span><span class="info-value">고2</span></div><div class="info"><span class="info-label">교재</span><span class="info-value">시발점 대수 + 워크북</span></div><div class="info full"><span class="info-label">일정</span><span class="info-value">개인별 맞춤</span></div></div><div class="chips"><span class="chip point">#현우진T 공식 기관</span><span class="chip point">#내신+수능 동시에</span><span class="chip">#개인별 맞춤</span></div><div class="card-cta"><button class="card-btn" onclick="scrollToForm('고등 대수 개념 완성')">상담 예약</button></div></article><article class="course-card" data-course="고등 미적분1 개념 완성"><div class="course-top"><div class="course-meta"><span class="badge b-personal">개별수업</span><span class="badge b-season">상시 모집</span><span class="badge b-official">현우진T 교재</span></div><h3 class="course-title">고등 미적분1 개념 완성</h3><p class="course-one">고2 미적분1의 내신 심화 개념과 수능 입문 개념을 함께 정리합니다.</p></div><div class="course-body"><div class="info"><span class="info-label">대상</span><span class="info-value">고2</span></div><div class="info"><span class="info-label">교재</span><span class="info-value">시발점 미적분1 + 워크북</span></div><div class="info full"><span class="info-label">일정</span><span class="info-value">개인별 맞춤</span></div></div><div class="chips"><span class="chip point">#현우진T 공식 기관</span><span class="chip point">#내신+수능 동시에</span><span class="chip">#개인별 맞춤</span></div><div class="card-cta"><button class="card-btn" onclick="scrollToForm('고등 미적분1 개념 완성')">상담 예약</button></div></article></section>
+  <section class="section course-section" data-section="elective"><div class="section-head"><div class="section-kicker">ELECTIVE MATH</div><h2 class="section-title">고등 선택과목</h2><p class="section-desc">고2 내신 심화 개념과 수능 입문 개념을 동시에 잡습니다.</p></div><article class="course-card" data-course="고등 대수 개념 완성"><div class="course-top"><div class="course-meta"><span class="badge b-personal">개별수업</span><span class="badge b-season">상시 모집</span><span class="badge b-official">현우진T 교재</span></div><h3 class="course-title">고등 대수 개념 완성</h3><p class="course-one">고2 대수의 내신 심화 개념과 수능 입문 개념을 함께 정리합니다.</p></div><div class="course-body"><div class="info"><span class="info-label">대상</span><span class="info-value">고2</span></div><div class="info"><span class="info-label">교재</span><span class="info-value">시발점 대수 + 워크북</span></div><div class="info full"><span class="info-label">일정</span><span class="info-value">개인별 맞춤</span></div></div><div class="chips"><span class="chip point">#현우진T 공식 기관</span><span class="chip point">#내신+수능 동시에</span><span class="chip">#개인별 맞춤</span></div><div class="card-cta"><button class="card-btn" onclick="scrollToForm('고등 대수 개념 완성')">상담 예약</button></div></article><article class="course-card" data-course="고등 미적분1 개념 완성"><div class="course-top"><div class="course-meta"><span class="badge b-personal">개별수업</span><span class="badge b-season">상시 모집</span><span class="badge b-official">현우진T 교재</span></div><h3 class="course-title">고등 미적분1 개념 완성</h3><p class="course-one">고2 미적분1의 내신 심화 개념과 수능 입문 개념을 함께 정리합니다.</p></div><div class="course-body"><div class="info"><span class="info-label">대상</span><span class="info-value">고2</span></div><div class="info"><span class="info-label">교재</span><span class="info-value">시발점 미적분1 + 워크북</span></div><div class="info full"><span class="info-label">일정</span><span class="info-value">개인별 맞춤</span></div></div><div class="chips"><span class="chip point">#현우진T 공식 기관</span><span class="chip point">#내신+수능 동시에</span><span class="chip">#개인별 맞춤</span></div><div class="card-cta"><button class="card-btn" onclick="scrollToForm('고등 미적분1 개념 완성')">상담 예약</button></div></article></section>
 
   <div class="cta-band"><strong>어떤 수업을 들어야 할지 모르겠다면</strong><p>현재 학년, 지금까지 한 교재, 이번 방학 목표만 남겨주세요. 학생 상황에 맞춰 무리 없는 방향으로 안내드립니다.</p><button class="btn btn-primary" onclick="scrollToForm()">상담으로 수업 추천받기</button></div>
 
@@ -439,7 +499,7 @@
 <div class="form-row single">
 <div class="form-group">
 <label>희망 과정 <span class="required">*</span> <span style="font-weight:400;color:#aaa;font-size:11px;">복수 선택 가능</span></label>
-<div id="f-course-list" style="background:#f8f8f7;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:0;"><label class="cb-item"><input name="course" value="개별진도" type="checkbox"/><span>개별진도 (학생 맞춤 설계)</span></label><label class="cb-item"><input name="course" value="초등 심화" type="checkbox"/><span>초등 심화 (디딤돌 최상위 · 수학의 신)</span></label><label class="cb-item"><input name="course" value="초등 경시 대비" type="checkbox"/><span>초등 경시 대비 (성대 경시 모의고사)</span></label><label class="cb-item"><input name="course" value="중등 개념 입문" type="checkbox"/><span>중등 개념 입문 (숨마쿰라우데)</span></label><label class="cb-item"><input name="course" value="중등 개념 완성" type="checkbox"/><span>중등 개념 완성 (원리해설)</span></label><label class="cb-item"><input name="course" value="중등 심화" type="checkbox"/><span>중등 심화 (고쟁이 · 에이급수학)</span></label><label class="cb-item"><input name="course" value="중2-2 심화" type="checkbox"/><span>중2-2 심화 (고쟁이 · 에이급수학)</span></label><label class="cb-item"><input name="course" value="입문 — 공통수학 1,2" type="checkbox"/><span>입문 — 공통수학 1,2 (노베 공통수학 1,2)</span></label><label class="cb-item"><input name="course" value="완성 — 공통수학 1,2" type="checkbox"/><span>완성 — 공통수학 1,2 (시발점 공통수학 1,2)</span></label><label class="cb-item"><input name="course" value="심화 — 공통수학 1" type="checkbox"/><span>심화 — 공통수학1 (고쟁이 · 블랙라벨)</span></label><label class="cb-item"><input name="course" value="심화 — 공통수학 2" type="checkbox"/><span>심화 — 공통수학2 (고쟁이 · 블랙라벨)</span></label><label class="cb-item"><input name="course" value="도형가이드" type="checkbox"/><span>도형가이드 (노베 도형가이드)</span></label><label class="cb-item"><input name="course" value="고등 대수 개념 완성" type="checkbox"/><span>고등 대수 개념 완성 (시발점 대수)</span></label><label class="cb-item"><input name="course" value="고등 미적분1 개념 완성" type="checkbox"/><span>고등 미적분1 개념 완성 (시발점 미적분1)</span></label><label class="cb-item"><input name="course" value="상담 후 결정" type="checkbox"/><span>상담 후 결정</span></label></div>
+<div id="f-course-list" style="background:#f8f8f7;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:0;"><label class="cb-item"><input name="course" value="썸머 인텐시브" type="checkbox"/><span>썸머 인텐시브 (여름방학 오전 집중)</span></label><label class="cb-item"><input name="course" value="개별진도" type="checkbox"/><span>개별진도 (학생 맞춤 설계)</span></label><label class="cb-item"><input name="course" value="초등 심화" type="checkbox"/><span>초등 심화 (디딤돌 최상위 · 수학의 신)</span></label><label class="cb-item"><input name="course" value="초등 경시 대비" type="checkbox"/><span>초등 경시 대비 (성대 경시 모의고사)</span></label><label class="cb-item"><input name="course" value="중등 개념 입문" type="checkbox"/><span>중등 개념 입문 (숨마쿰라우데)</span></label><label class="cb-item"><input name="course" value="중등 개념 완성" type="checkbox"/><span>중등 개념 완성 (원리해설)</span></label><label class="cb-item"><input name="course" value="중등 심화" type="checkbox"/><span>중등 심화 (고쟁이 · 에이급수학)</span></label><label class="cb-item"><input name="course" value="중2-2 심화" type="checkbox"/><span>중2-2 심화 (고쟁이 · 에이급수학)</span></label><label class="cb-item"><input name="course" value="입문 — 공통수학 1,2" type="checkbox"/><span>입문 — 공통수학 1,2 (노베 공통수학 1,2)</span></label><label class="cb-item"><input name="course" value="완성 — 공통수학 1,2" type="checkbox"/><span>완성 — 공통수학 1,2 (시발점 공통수학 1,2)</span></label><label class="cb-item"><input name="course" value="심화 — 공통수학 1" type="checkbox"/><span>심화 — 공통수학1 (고쟁이 · 블랙라벨)</span></label><label class="cb-item"><input name="course" value="심화 — 공통수학 2" type="checkbox"/><span>심화 — 공통수학2 (고쟁이 · 블랙라벨)</span></label><label class="cb-item"><input name="course" value="도형가이드" type="checkbox"/><span>도형가이드 (노베 도형가이드)</span></label><label class="cb-item"><input name="course" value="고등 대수 개념 완성" type="checkbox"/><span>고등 대수 개념 완성 (시발점 대수)</span></label><label class="cb-item"><input name="course" value="고등 미적분1 개념 완성" type="checkbox"/><span>고등 미적분1 개념 완성 (시발점 미적분1)</span></label><label class="cb-item"><input name="course" value="상담 후 결정" type="checkbox"/><span>상담 후 결정</span></label></div>
 </div>
 </div>
 <div class="form-row">
@@ -568,7 +628,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup()
 
 runIntro();
   function focusCourse(course){var card=document.querySelector('[data-course="'+course+'"]');if(!card)return;card.scrollIntoView({behavior:'smooth',block:'center'});card.animate([{boxShadow:'0 0 0 0 rgba(24,95,165,0)'},{boxShadow:'0 0 0 4px rgba(24,95,165,.18)'},{boxShadow:'0 0 0 0 rgba(24,95,165,0)'}],{duration:1100,easing:'ease-out'});}
-  document.querySelectorAll('.tab-btn').forEach(function(btn){btn.addEventListener('click',function(){var tab=btn.dataset.tab;document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.course-section,.route-section').forEach(function(section){if(tab==='all'||section.dataset.section===tab)section.classList.remove('hidden-by-tab');else section.classList.add('hidden-by-tab');});window.scrollTo({top:0,behavior:'smooth'});});});
+  document.querySelectorAll('.tab-btn').forEach(function(btn){btn.addEventListener('click',function(){var tab=btn.dataset.tab;document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.course-section,.route-section').forEach(function(section){if(tab==='all'||section.dataset.section===tab)section.classList.remove('hidden-by-tab');else section.classList.add('hidden-by-tab');});if(tab==='all'){window.scrollTo({top:0,behavior:'smooth'});}else{var _w=document.querySelector('.tabs-wrap');var _y=0,_e=_w;while(_e){_y+=_e.offsetTop;_e=_e.offsetParent;}window.scrollTo({top:_y,behavior:'smooth'});}});});
   var phoneInput=document.getElementById('f-phone');if(phoneInput){phoneInput.addEventListener('input',function(e){e.target.value=e.target.value.replace(/[^0-9]/g,'').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/,'$1-$2-$3');});}
   var SHEET_URL='https://script.google.com/macros/s/AKfycbwKb0RAVuC-ZzP4qrQd_2GpywlgXahcrwSJPcFOLMdvcPZYFuAixnhHlh1KUcgJIM-N/exec';
   function scrollToForm(course){document.getElementById('reservation-form').scrollIntoView({behavior:'smooth'});if(course){setTimeout(function(){document.querySelectorAll('input[name="course"]').forEach(function(cb){if(cb.value===course)cb.checked=true;});},500);}}
@@ -618,6 +678,41 @@ runIntro();
       }
     }
   }
+</script>
+<script>
+/* 스크롤스파이 — 전체 보기에서 스크롤 위치에 맞춰 상단 탭 활성 표시 */
+(function(){
+  var wrap=document.querySelector('.tabs-wrap');
+  var tabsEl=document.querySelector('.tabs');
+  var btns=[].slice.call(document.querySelectorAll('.tab-btn'));
+  if(!wrap||!btns.length) return;
+  var byTab={}; btns.forEach(function(b){byTab[b.dataset.tab]=b;});
+  var sections=[].slice.call(document.querySelectorAll('.route-section,.course-section'));
+  if(!sections.length) return;
+  var curr=null, ticking=false;
+  function apply(tab){
+    if(tab===curr) return; curr=tab;
+    btns.forEach(function(b){b.classList.toggle('active', b.dataset.tab===tab);});
+    var act=byTab[tab];
+    if(act&&tabsEl){var left=act.offsetLeft-(tabsEl.clientWidth-act.offsetWidth)/2;
+      try{tabsEl.scrollTo({left:left,behavior:'smooth'});}catch(e){tabsEl.scrollLeft=left;}}
+  }
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      if(document.querySelector('.course-section.hidden-by-tab')) return; /* 필터 모드면 관여 안 함 */
+      var ref=wrap.offsetHeight+14, cur='all';
+      for(var i=0;i<sections.length;i++){
+        if(sections[i].getBoundingClientRect().top<=ref) cur=sections[i].dataset.section;
+      }
+      apply(cur);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
 </script>
 </body>
 </html>
